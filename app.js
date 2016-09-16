@@ -4,18 +4,18 @@ angular.module('LunchCheck',[])
 .controller('LunchCheckController',LunchCheckController);
 LunchCheckController.$inject=['$scope'];
 function LunchCheckController($scope) {
-//$scope.menu="";
-
+$scope.menu="";
+$scope.message="";
 $scope.countmenu = function (){
   var items=$scope.menu;
 
+  if(items.trim().length == 0) {
+      $scope.message ="please enter data first";
+  }else {
     items = (items.replace(/\s/g,''));
-     console.log(items);
-     if(items.length >1){
     var nitems=items.split(',');
    nitems=nitems.filter(Boolean);
 
-console.log(nitems);
     if(nitems.length <= 3)
     {
       $scope.message ="Enjoy";
@@ -24,14 +24,10 @@ console.log(nitems);
       $scope.message ="Too Much";
     }
   else {
-    $scope.message ="";
+    $scope.message ="please enter data first";
   }
-}else {
-  $scope.message ="";
 }
 };
-
-
 }
 
 })();
